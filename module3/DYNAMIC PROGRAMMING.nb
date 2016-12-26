@@ -1,0 +1,433 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframEngine 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       160,          7]
+NotebookDataLength[     15027,        424]
+NotebookOptionsPosition[     13810,        381]
+NotebookOutlinePosition[     14146,        396]
+CellTagsIndexPosition[     14103,        393]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["DYNAMIC PROGRAMMING", "Title",
+ CellChangeTimes->{{3.690506238573756*^9, 3.690506252995372*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["INTRODUCTION", "Chapter",
+ CellChangeTimes->{{3.6905062785707912`*^9, 3.690506280125485*^9}}],
+
+Cell["\<\
+Dynamic programming is an algorithm design method that can be used when the \
+solution to a problem can be viewed as the result of a sequence of decisions \
+in order to optimize some objective function. For example, think of a robot \
+that has to move through a given route to receach the destination in the \
+shortest time where at every junction it has to decide which path to take \
+subsequently. For many problems as the decision making of the robot, it is \
+not possible to make stepwise decisions (based only on local information) in \
+such a manner that the sequence of decisions made is optimal.\
+\>", "Text",
+ CellChangeTimes->{{3.690510655487215*^9, 3.690510852847828*^9}, {
+  3.690510953217456*^9, 3.690510966495121*^9}, {3.6905110905721693`*^9, 
+  3.690511151920122*^9}, {3.690511737531838*^9, 3.690511745014192*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Knapsack: We make decision on ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "1"], TraditionalForm]]],
+ ", then on ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["x", "2"], " "}], TraditionalForm]]],
+ "etc. An optimal sequence of decions maximizes the objective function ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Sum]", 
+    RowBox[{
+     SubscriptBox["p", "i"], 
+     SubscriptBox["x", "i"]}]}], TraditionalForm]]],
+ " satisfying the constraints ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[Sum]", 
+     RowBox[{
+      SubscriptBox["w", "i"], 
+      SubscriptBox["x", "i"]}]}], "\[LessSlantEqual]", "m"}], 
+   TraditionalForm]]],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"0", "\[LessSlantEqual]", 
+    SubscriptBox["x", "i"], "\[LessSlantEqual]", "1."}], TraditionalForm]]]
+}], "ItemNumbered",
+ CellChangeTimes->{{3.690511040624208*^9, 3.690511045991873*^9}, {
+   3.690511206443454*^9, 3.690511219706163*^9}, {3.6905112509958973`*^9, 
+   3.690511498249942*^9}, {3.690511549572854*^9, 3.6905115666470013`*^9}, {
+   3.690511609791092*^9, 3.690511665097204*^9}, 3.690511749705236*^9}],
+
+Cell["\<\
+Shortest path: One way to find the shortest path from vertex \[ScriptI] to \
+vertex \[ScriptJ] in a directed graph \[ScriptCapitalG] is to decide which \
+vertex should be the second vertex, which the third, which the forth etc. \
+untill vertex \[ScriptJ] is reached. An optimal sequence of decisions is one \
+that results in a path of least lenght. There is no way to make a decision at \
+this time and guarantee that future decisions leading to an optimal sequence \
+can be made.\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.690511040624208*^9, 3.690511058071994*^9}, {
+  3.690512232604466*^9, 3.690512412961194*^9}, {3.69051247519484*^9, 
+  3.690512505008038*^9}, {3.690512538869096*^9, 3.690512563330871*^9}}]
+}, Open  ]],
+
+Cell["\<\
+In dynamic programming an optimal sequence of decisions is arrived at by \
+making explicit appeal to the Principle of Optimality. \
+\>", "Text",
+ CellChangeTimes->{{3.690512608122279*^9, 3.690512668875341*^9}}],
+
+Cell[TextData[{
+ "Principle of Optimality: The principle of optimality states that an ",
+ StyleBox["optimal sequence of decisions has the property that",
+  FontFamily->"Nimbus Sans L",
+  FontSlant->"Italic"],
+ " whatever the initial state and decisions are, the remaining decisions must \
+constitute an optimal decision sequence with regard to the state resulting \
+from the frist decision."
+}], "Item",
+ CellChangeTimes->{{3.690512709065696*^9, 3.690512778836266*^9}, 
+   3.69051295826307*^9}],
+
+Cell["\<\
+Note that the Principle of Optimality is a description of the character of an \
+optimal sequence of decisions when compared with other sequence of decisions.\
+\
+\>", "Text",
+ CellChangeTimes->{{3.690512976827455*^9, 3.690513022529055*^9}, {
+  3.690513084840005*^9, 3.6905130949169073`*^9}}],
+
+Cell[TextData[{
+ "For example, in the case of shortest path, Let ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["A", "i"], TraditionalForm]]],
+ " be the set of vertices adjacent to vertex \[ScriptI]. For each vertex ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[ScriptK]", "\[Element]", 
+    SubscriptBox["A", "i"]}], TraditionalForm]]],
+ ". let ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[CapitalGamma]", "k"], TraditionalForm]]],
+ " be a shortest path from \[ScriptK] to \[ScriptJ]. Then a shortest \
+\[ScriptI] to \[ScriptJ] path is the shortest of the paths ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{"\[ScriptI]", ",", 
+     RowBox[{
+      SubscriptBox["\[CapitalGamma]", "k"], " ", "|", " ", 
+      RowBox[{"k", " ", "\[Element]", 
+       SubscriptBox["A", "i"]}]}]}]}], TraditionalForm]]],
+ "}."
+}], "Text",
+ CellChangeTimes->{{3.690513329051029*^9, 3.6905135380069942`*^9}, {
+  3.690515960308172*^9, 3.6905159875721703`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["EXERCISES", "Subsection",
+ CellChangeTimes->{{3.690517234120528*^9, 3.690517236822104*^9}}],
+
+Cell["Solve the problem 2 from pp.276 of [1].", "ItemNumbered",
+ CellChangeTimes->{{3.690517411466072*^9, 3.690517423430666*^9}, {
+  3.691639619452009*^9, 3.691639619456691*^9}, {3.691639663650255*^9, 
+  3.691639663656353*^9}, {3.691640829599025*^9, 3.691640841527162*^9}}],
+
+Cell[TextData[{
+ "HINT: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[CapitalPhi]", 
+     RowBox[{"i", ",", "j"}]], " ", "=", 
+    RowBox[{
+     UnderscriptBox["min", 
+      RowBox[{"k", "\[Element]", 
+       SubscriptBox["P", "j"]}]], 
+     RowBox[{"{", 
+      SubscriptBox["c", "kj"]}]}]}], TraditionalForm]]],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[CapitalPhi]", 
+    RowBox[{"i", ",", "k"}]], TraditionalForm]]],
+ "} ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["c", "kj"], TraditionalForm]]],
+ " is the cost of a single edge, ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["\[CapitalPhi]", 
+    RowBox[{"i", ",", "k"}]], TraditionalForm]]],
+ "is the cost of a path."
+}], "Text",
+ CellChangeTimes->{3.691640855778668*^9}],
+
+Cell["Solve the problem 1 from pp.276 of [1].", "ItemNumbered",
+ CellChangeTimes->{{3.690517411466072*^9, 3.690517423430666*^9}, {
+  3.691639619452009*^9, 3.691639619456691*^9}, {3.691639663650255*^9, 
+  3.691639663656353*^9}, {3.691640829599025*^9, 3.691640881443524*^9}}],
+
+Cell[TextData[{
+ ButtonBox["Longest Path Problem",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www2.seas.gwu.edu/~ayoussef/cs6212/dynamicprog.html"], None},
+  ButtonNote->"http://www2.seas.gwu.edu/~ayoussef/cs6212/dynamicprog.html"],
+ ": Take for example the undirected graph G of nodes a,b,c,d and e and edges \
+(a,b) (b,c) (c,d) (d,e) and (e,a). That is G is a ring. The longest \
+(noncyclic) path from a to d is a,b,c,d. The subpath from b to c on that path \
+is simply the edge (b,c). However it is not the longest path from b to c. \
+Thus failing the principle of optimality.\nPath problems with negative \
+length: Consider the problem of finding shortest paths on graphs that allow \
+negative edge weights. Referring to the following graph, observe that a-b-c \
+is a shortest path between a and c of length -2. However, unlike for the \
+positive weight shortest path problem, the subpaths of this shortest path are \
+not necessarily shortest paths. Thus, the shortest path between a and b is \
+a-c-b (of length -1) not a-b (of length 1). The principle of optimality fails \
+to hold for this problem.\n",
+ ButtonBox["Path Problem with Negative Length",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www2.ee.btu.edu.tw/~yen/courses/al-01/A06-Dynamic%\
+20Programming.ppt"], None},
+  ButtonNote->
+   "http://www2.ee.btu.edu.tw/~yen/courses/al-01/A06-Dynamic%20Programming.\
+ppt"],
+ ": Consider the problem of finding shortest paths on graphs that allow \
+negative edge weights, Referring to the following graph, observe that a-b-c \
+is a shortest path between a and c of length -2. However, unlike for the \
+positive weight shortest path problem, the subpaths of this shortest path are \
+not necessarily shortest paths. Thus the shortest path between a and b is \
+a-c-b (of length -1) and not a-b (of length 1). The principle of ptimality \
+fails to hold for this problem. "
+}], "Text",
+ CellChangeTimes->{{3.6916409282562103`*^9, 3.691641102414195*^9}, {
+  3.691641183370512*^9, 3.691641260153319*^9}, {3.691641302220254*^9, 
+  3.691641396477458*^9}, {3.691641841437509*^9, 3.69164185392443*^9}, {
+  3.691641915144988*^9, 3.691642046058316*^9}, {3.6916421085164433`*^9, 
+  3.691642108518345*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"GraphPlot", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"a", "->", "b"}], ",", "\"\<1\>\""}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"b", "->", "c"}], ",", "\"\<-3\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"a", "->", "c"}], ",", "\"\<2\>\""}], "}"}]}], "}"}], ",", 
+    " ", 
+    RowBox[{"VertexLabeling", "\[Rule]", "True"}], ",", " ", 
+    RowBox[{"EdgeLabeling", "\[Rule]", "True"}], ",", 
+    RowBox[{"DirectedEdges", "\[Rule]", "False"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.691641410721328*^9, 3.691641560202957*^9}, {
+  3.6916416207286243`*^9, 3.69164176719129*^9}, {3.691641858250869*^9, 
+  3.691641906428018*^9}}],
+
+Cell[TextData[{
+ "Write ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " code to draw the graph on Figure 5.1 pp.277 of [1]."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.690517411466072*^9, 3.690517423430666*^9}, {
+   3.691639619452009*^9, 3.691639619456691*^9}, 3.691639663650255*^9, {
+   3.691639710820945*^9, 3.691639713318098*^9}, {3.691639788819305*^9, 
+   3.6916397888259172`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"m", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "Infinity", ",", "Infinity", ",", "7", ",", "Infinity", ",", "10"}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "Infinity", ",", " ", "Infinity", ",", " ", "Infinity", ",", " ", 
+       "Infinity", ",", " ", "Infinity"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "Infinity", ",", " ", "Infinity", ",", " ", "Infinity", ",", "3", ",", 
+       "8"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "Infinity", ",", " ", "8", ",", " ", "Infinity", ",", "Infinity", ",", 
+       " ", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "Infinity", ",", " ", "5", ",", " ", "Infinity", ",", " ", "Infinity", 
+       ",", " ", "Infinity"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"t", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"DeleteCases", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"m", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", "j"}], "]"}], "]"}], "==", "Infinity"}], ",", 
+           "Null", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "\[Rule]", "j"}], ",", " ", 
+             RowBox[{"m", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "5"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", "1", ",", "5"}], "}"}]}], "]"}], ",", "Null", ",",
+        "2"}], "]"}], ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GraphPlot", "[", 
+   RowBox[{"t", ",", " ", 
+    RowBox[{"VertexLabeling", "\[Rule]", "True"}], ",", " ", 
+    RowBox[{"DirectedEdges", "\[Rule]", "True"}]}], "]"}], ";"}]}], "Input"],
+
+Cell[TextData[{
+ "Write ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " code to find neighbours of node 5."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.690517411466072*^9, 3.690517423430666*^9}, {
+   3.691639619452009*^9, 3.691639619456691*^9}, 3.691639663650255*^9, {
+   3.691639710820945*^9, 3.691639713318098*^9}, {3.691639788819305*^9, 
+   3.691639830335052*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"k", "=", 
+   RowBox[{"m", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "5"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"l", "=", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"k", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "\[Equal]", "Infinity"}], ",", " ",
+          "Null", ",", " ", "i"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "k", "]"}]}], "}"}]}], "]"}], ",", "Null"}], 
+    "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.691639848391364*^9, 3.691639853560833*^9}, 
+   3.691642119956543*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["REFERENCE", "Subsection",
+ CellChangeTimes->{{3.6905172756565723`*^9, 3.690517278419478*^9}}],
+
+Cell["\<\
+Computer Algorithms/C++, Second Edition, Ellis Horowitz, Sartaj \
+Sahini,Sanguthevar Rajasekaran.\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.690517316305932*^9, 3.6905173803618107`*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 739},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.3 for Linux ARM (32-bit) (January 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[582, 22, 102, 1, 94, "Title"],
+Cell[CellGroupData[{
+Cell[709, 27, 99, 1, 67, "Chapter"],
+Cell[811, 30, 839, 12, 95, "Text"],
+Cell[CellGroupData[{
+Cell[1675, 46, 1132, 35, 51, "ItemNumbered"],
+Cell[2810, 83, 721, 11, 71, "ItemNumbered"]
+}, Open  ]],
+Cell[3546, 97, 220, 4, 32, "Text"],
+Cell[3769, 103, 494, 10, 50, "Item"],
+Cell[4266, 115, 300, 6, 32, "Text"],
+Cell[4569, 123, 947, 27, 55, "Text"],
+Cell[CellGroupData[{
+Cell[5541, 154, 97, 1, 45, "Subsection"],
+Cell[5641, 157, 273, 3, 31, "ItemNumbered"],
+Cell[5917, 162, 752, 29, 37, "Text"],
+Cell[6672, 193, 273, 3, 31, "ItemNumbered"],
+Cell[6948, 198, 2225, 38, 179, "Text"],
+Cell[9176, 238, 789, 21, 30, "Input"],
+Cell[9968, 261, 391, 9, 32, "ItemNumbered"],
+Cell[10362, 272, 1941, 55, 88, "Input"],
+Cell[12306, 329, 372, 9, 32, "ItemNumbered"],
+Cell[12681, 340, 753, 24, 50, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13471, 369, 99, 1, 45, "Subsection"],
+Cell[13573, 372, 197, 4, 31, "ItemNumbered"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

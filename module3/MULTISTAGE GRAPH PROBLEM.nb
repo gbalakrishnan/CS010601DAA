@@ -1,0 +1,639 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframEngine 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       160,          7]
+NotebookDataLength[     25325,        630]
+NotebookOptionsPosition[     24329,        591]
+NotebookOutlinePosition[     24665,        606]
+CellTagsIndexPosition[     24622,        603]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Multistage Graphs", "Title",
+ CellChangeTimes->{{3.691642195524622*^9, 3.691642204116997*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Definition of a Multistage Graph", "Section",
+ CellChangeTimes->{{3.6916751096736403`*^9, 3.69167513532158*^9}}],
+
+Cell["The following code draws a multistage graph of 5 stages:", "Text",
+ CellChangeTimes->{{3.69167514321728*^9, 3.6916751837124023`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"m", "=", 
+   RowBox[{"(", GridBox[{
+      {"\[Infinity]", "9", "7", "3", "2", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "4", "2", "1", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "2", "7", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "11", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "11", "8", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", "6", "5", 
+       "\[Infinity]", "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", "4", "3", 
+       "\[Infinity]", "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "5", "6", "\[Infinity]"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "4"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "2"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "5"},
+      {"\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]", 
+       "\[Infinity]", "\[Infinity]", "\[Infinity]", "\[Infinity]"}
+     }], ")"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6916743873275213`*^9, 3.691674468918736*^9}, {
+   3.6916745464972343`*^9, 3.6916748492572823`*^9}, 3.691675082550508*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"t", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{
+     RowBox[{"DeleteCases", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"m", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", "j"}], "]"}], "]"}], "==", "Infinity"}], ",", 
+           "Null", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"i", "\[Rule]", "j"}], ",", " ", 
+             RowBox[{"m", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "12"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", "1", ",", "12"}], "}"}]}], "]"}], ",", "Null", 
+       ",", "2"}], "]"}], ",", "1"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6916749023619223`*^9, 3.691674931697246*^9}, {
+   3.6916749930901127`*^9, 3.691675039776534*^9}, 3.691675076921254*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LayeredGraphPlot", "[", 
+  RowBox[{"t", ",", " ", 
+   RowBox[{"VertexLabeling", "\[Rule]", "True"}], ",", " ", 
+   RowBox[{"EdgeLabeling", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6916722020737047`*^9, 3.691672202339576*^9}, {
+   3.691672371019435*^9, 3.691672395279352*^9}, {3.6916726187032433`*^9, 
+   3.691672621375328*^9}, {3.691672684263163*^9, 3.6916726982795067`*^9}, {
+   3.691672821477405*^9, 3.691672951765554*^9}, {3.691673820789226*^9, 
+   3.691673854924096*^9}, {3.691673921179524*^9, 3.69167396214242*^9}, {
+   3.691675047903466*^9, 3.691675048251692*^9}, 3.691675090454211*^9, {
+   3.6916751891421432`*^9, 3.691675194088688*^9}, 3.691758700446682*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[GraphicsComplexBox[{{0., 4.}, {0., 3.}, {-1., 3.}, {2., 3.}, {1., 
+    3.}, {-1., 2.}, {0., 2.}, {1., 2.}, {-1., 1.}, {0., 1.}, {1., 1.}, {0., 
+    0.}}, {
+     {RGBColor[0.5, 0., 0.], Arrowheads[{{0.02554714064914992, 0.7}}], 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["9", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{1, 2}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["7", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{1, 3}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["3", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{1, 4}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["2", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{1, 5}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["4", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{2, 6}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["2", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{2, 7}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["1", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{2, 8}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["2", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{3, 6}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["7", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{3, 7}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["11", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{4, 8}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["11", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{5, 7}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["8", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{5, 8}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["6", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{6, 9}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["5", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{6, 10}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["4", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{7, 9}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["3", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{7, 10}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["5", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{8, 10}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["6", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{8, 11}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["4", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{9, 12}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["2", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{10, 12}]}, 
+      {Arrowheads[{{0.5, 0.5, 
+          GraphicsBox[{
+            GrayLevel[0], 
+            InsetBox[
+             BoxData[
+              FormBox[
+               StyleBox["5", StripOnInput -> False], TraditionalForm]], {0, 
+             0}, 
+             ImageScaled[{0.5, 0.5}], Automatic, None, Background -> 
+             GrayLevel[1]]}]}, {0.02554714064914992, 0.8}}], 
+       ArrowBox[{11, 12}]}}, {InsetBox[
+       FrameBox["1",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 1], InsetBox[
+       FrameBox["2",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 2], InsetBox[
+       FrameBox["3",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 3], InsetBox[
+       FrameBox["4",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 4], InsetBox[
+       FrameBox["5",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 5], InsetBox[
+       FrameBox["6",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 6], InsetBox[
+       FrameBox["7",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 7], InsetBox[
+       FrameBox["8",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 8], InsetBox[
+       FrameBox["9",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 9], InsetBox[
+       FrameBox["10",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 10], InsetBox[
+       FrameBox["11",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 11], InsetBox[
+       FrameBox["12",
+        Background->RGBColor[1, 1, 0.8],
+        FrameStyle->RGBColor[0.94, 0.85, 0.36],
+        StripOnInput->False], 12]}}],
+   Annotation[#, 
+    VertexCoordinateRules -> {{0., 4.}, {0., 3.}, {-1., 3.}, {2., 3.}, {1., 
+     3.}, {-1., 2.}, {0., 2.}, {1., 2.}, {-1., 1.}, {0., 1.}, {1., 1.}, {0., 
+     0.}}]& ],
+  AspectRatio->Automatic,
+  FrameTicks->None,
+  PlotRange->All,
+  PlotRangePadding->Scaled[0.1]]], "Output",
+ CellChangeTimes->{{3.691758702305722*^9, 
+  3.69175870792345*^9}},ImageCache->GraphicsData["CompressedBitmap", "\<\
+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\
+\>"]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Resource Allocation Problem", "Section",
+ CellChangeTimes->{{3.691747102757798*^9, 3.691747106314632*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Forward approach", "ItemNumbered",
+ CellChangeTimes->{{3.691749774461999*^9, 3.6917497788994427`*^9}}],
+
+Cell["Backward approach", "ItemNumbered",
+ CellChangeTimes->{{3.691749774461999*^9, 3.691749778896936*^9}, {
+  3.691758526583996*^9, 3.691758530191908*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"V", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", "1", "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "3", ",", "4", ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "7", ",", "8"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"9", ",", "10", ",", "11"}], "}"}], ",", 
+     RowBox[{"{", "12", "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6917543839869137`*^9, 3.6917544011717377`*^9}, {
+  3.69175461117498*^9, 3.6917546238493567`*^9}, {3.691756382558133*^9, 
+  3.691756398663823*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"cost", "[", 
+    RowBox[{"i_", ",", "j_"}], "]"}], ":=", 
+   RowBox[{"Min", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"i", "+", "1"}], "\[Equal]", 
+         RowBox[{"Length", "[", "V", "]"}]}], ",", 
+        RowBox[{"m", "[", 
+         RowBox[{"[", 
+          RowBox[{"j", ",", "l"}], "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"m", "[", 
+          RowBox[{"[", 
+           RowBox[{"j", ",", "l"}], "]"}], "]"}], "+", 
+         RowBox[{"cost", "[", 
+          RowBox[{
+           RowBox[{"i", "+", "1"}], ",", "l"}], "]"}]}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"l", ",", 
+        RowBox[{"V", "[", 
+         RowBox[{"[", 
+          RowBox[{"i", "+", "1"}], "]"}], "]"}]}], "}"}]}], "]"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.6917543066710663`*^9, 3.6917543747473507`*^9}, {
+   3.691754902187315*^9, 3.691754905983637*^9}, {3.691754946713951*^9, 
+   3.691754949730504*^9}, {3.6917550971766453`*^9, 3.691755098571381*^9}, {
+   3.6917555343967953`*^9, 3.691755555705853*^9}, {3.691755666751482*^9, 
+   3.691755775841131*^9}, {3.691755813200039*^9, 3.691755814615931*^9}, {
+   3.691756401764557*^9, 3.6917564019156237`*^9}, {3.691757129046467*^9, 
+   3.6917571444835567`*^9}, 3.691758498120781*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"cost", "[", 
+  RowBox[{"1", ",", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6917566841484613`*^9, 3.691756696815789*^9}, {
+  3.691756857097405*^9, 3.691756862042738*^9}, {3.69175736504805*^9, 
+  3.691757368120187*^9}, {3.691757607147642*^9, 3.691757668015436*^9}, {
+  3.691758447870449*^9, 3.6917584872659187`*^9}, {3.691758578777816*^9, 
+  3.691758580160018*^9}}],
+
+Cell[BoxData["16"], "Output",
+ CellChangeTimes->{{3.691756686914081*^9, 3.691756697656118*^9}, 
+   3.6917568807785673`*^9, 3.691757147939899*^9, {3.691757192646834*^9, 
+   3.6917572144944572`*^9}, 3.6917573687661133`*^9, {3.691757606028319*^9, 
+   3.6917576687546167`*^9}, {3.691758459311717*^9, 3.691758487730914*^9}, 
+   3.691758580735386*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 739},
+WindowMargins->{{1, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.3 for Linux ARM (32-bit) (January 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[582, 22, 100, 1, 94, "Title"],
+Cell[CellGroupData[{
+Cell[707, 27, 118, 1, 65, "Section"],
+Cell[828, 30, 139, 1, 32, "Text"],
+Cell[970, 33, 2488, 42, 192, "Input"],
+Cell[3461, 77, 1037, 28, 30, "Input"],
+Cell[CellGroupData[{
+Cell[4523, 109, 711, 11, 30, "Input"],
+Cell[5237, 122, 15885, 375, 447, 10893, 292, "CachedBoxData", "BoxData", \
+"Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21171, 503, 112, 1, 65, "Section"],
+Cell[CellGroupData[{
+Cell[21308, 508, 108, 1, 31, "ItemNumbered"],
+Cell[21419, 511, 156, 2, 31, "ItemNumbered"]
+}, Open  ]],
+Cell[21590, 516, 569, 15, 30, "Input"],
+Cell[22162, 533, 1363, 35, 32, "Input"],
+Cell[CellGroupData[{
+Cell[23550, 572, 391, 7, 30, "Input"],
+Cell[23944, 581, 345, 5, 30, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
