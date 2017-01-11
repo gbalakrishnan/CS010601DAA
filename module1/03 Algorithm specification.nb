@@ -1,0 +1,154 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframEngine 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       160,          7]
+NotebookDataLength[      4421,        145]
+NotebookOptionsPosition[      3798,        119]
+NotebookOutlinePosition[      4134,        134]
+CellTagsIndexPosition[      4091,        131]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Algorithm Specification", "Title",
+ CellChangeTimes->{{3.693095944034748*^9, 3.693095949709285*^9}}],
+
+Cell["\<\
+Construct an algorithm from the text describing Selection Sort:
+
+\[OpenCurlyDoubleQuote]From those elements that are currently unsorted, find \
+the smallest and place it next in the sorted list.\[CloseCurlyDoubleQuote]\
+\>", "Text",
+ CellChangeTimes->{{3.6930961835956*^9, 3.693096318967317*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Steps to follow", "Subsubsection",
+ CellChangeTimes->{{3.693096334853959*^9, 3.69309633917146*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Sequentialization:",
+  FontWeight->"Bold"],
+ " Decompose the text into sequencial steps."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.69309635506217*^9, 3.6930963731874247`*^9}, {
+  3.693096700834045*^9, 3.693096706341354*^9}, {3.693096911504662*^9, 
+  3.6930969270091743`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Functionalization:",
+  FontWeight->"Bold"],
+ " Denote by function names (along with input and output) any tasks as deemed \
+necessary."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.69309635506217*^9, 3.693096368679965*^9}, {
+  3.693096403200191*^9, 3.693096428441595*^9}, {3.6930969304574757`*^9, 
+  3.693096965864231*^9}, {3.693097373621492*^9, 3.693097378186692*^9}}],
+
+Cell[TextData[{
+ StyleBox["Control:",
+  FontWeight->"Bold"],
+ " Identify control structures - loops and conditions."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.69309635506217*^9, 3.693096368679965*^9}, {
+   3.693096403200191*^9, 3.693096447306736*^9}, 3.6930964797853823`*^9, {
+   3.693096940460064*^9, 3.693096941883334*^9}}],
+
+Cell[TextData[{
+ StyleBox["Denotation:",
+  FontWeight->"Bold"],
+ " Denote data items (data, indices etc.) using specific names."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.69309635506217*^9, 3.693096368679965*^9}, {
+  3.693096403200191*^9, 3.6930964765730867`*^9}, {3.6930969700800877`*^9, 
+  3.693096973617412*^9}}]
+}, Open  ]],
+
+Cell["\<\
+
+Sequentialization
+1. Find the smallest in a given unsorted array
+2. Place it in the sorted part
+
+Functionalization
+1. <smallest element> find_smallest(<unsorted array>)
+2. place_in_sorted(<sorted array>)
+
+Control
+<smallest element> find_smallest(<unsorted array>)
+Sequentialization and Control
+1. Make the first element of unsorted array the smallest
+2. If the smallest element is the smallest compared to other elements then \
+return that else return the smallest 
+
+place_in_sorted(<smallest element>, <sorted array>)
+Sequentialization
+1. Place <smallest element> in the end of the <sorted array>
+
+Denotation
+<smallest element> find_smallest(<unsorted array>)
+Sequentialization and Control
+1. Let i=BEGIN_UNSORTED; <smallest_element>=<unsorted array>[BEGIN_UNSORTED];
+2. Loop [till i is END_UNSORTED] 
+     2.1 If <smallest element> > <unsorted array>[i] then <smallest \
+element>=<unsorted array>[i]
+
+place_in_sorted(<smallest element>, <sorted array>)
+Sequentialization
+1. <sorted array>[END_SORTED]=<smallest element>
+
+\
+\>", "Text",
+ CellChangeTimes->{{3.693096515941023*^9, 3.693096565783854*^9}, {
+  3.693097027978648*^9, 3.6930974678202333`*^9}, {3.693097504350719*^9, 
+  3.6930977541441*^9}, {3.693097838257452*^9, 3.693097900912244*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 739},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.3 for Linux ARM (32-bit) (January 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[582, 22, 106, 1, 94, "Title"],
+Cell[691, 25, 306, 6, 74, "Text"],
+Cell[CellGroupData[{
+Cell[1022, 35, 105, 1, 36, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[1152, 40, 303, 7, 32, "ItemNumbered"],
+Cell[1458, 49, 393, 8, 32, "ItemNumbered"],
+Cell[1854, 59, 325, 7, 32, "ItemNumbered"],
+Cell[2182, 68, 315, 7, 32, "ItemNumbered"]
+}, Open  ]],
+Cell[2512, 78, 1258, 37, 662, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

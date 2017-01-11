@@ -1,0 +1,393 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframEngine 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       160,          7]
+NotebookDataLength[     14743,        384]
+NotebookOptionsPosition[     12761,        320]
+NotebookOutlinePosition[     13093,        335]
+CellTagsIndexPosition[     13050,        332]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Performance Analysis", "Title",
+ CellChangeTimes->{{3.693099988767831*^9, 3.693099993165951*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Making evaluative judgements about the algorithms.", "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025922064*^9}}],
+
+Cell[TextData[{
+ StyleBox["Space Complexity:",
+  FontWeight->"Bold"],
+ " The space complexity of an algorithm is the amount of memory it needs to \
+run to completion."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931002418362627`*^9}}],
+
+Cell[TextData[{
+ StyleBox["Time Complexity:",
+  FontWeight->"Bold"],
+ " The time complexity of an algorithm is the amount of computer time it \
+needs to run to completion."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.693100279978394*^9}}],
+
+Cell["Performance evaluation are of two types:", "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.693100288095097*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["A priori estimates (Perfomance analysis)", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.693100309199842*^9}}],
+
+Cell["A posteriori testing (Performance measurement)", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.693100329699513*^9}, {3.6931080162840557`*^9, 
+  3.693108016294557*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Measuring an algorithm for time and space results in functions!\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.693100329699513*^9}, {3.6931080162840557`*^9, 
+  3.693108033663447*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Parameter used to measure is a variable", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.693100329699513*^9}, {3.6931080162840557`*^9, 
+  3.693108084849765*^9}}],
+
+Cell["Measuring the order of growth", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.693100329699513*^9}, {3.6931080162840557`*^9, 
+  3.693108091698367*^9}}]
+}, Open  ]],
+
+Cell["Measurement results in a fixed part and a variable part", "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100683435204*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Space complexity", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.6931007078854437`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Space for program, input and output", "SubsubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.6931007328988237`*^9}}],
+
+Cell[TextData[{
+ "Space depends on ",
+ StyleBox["instance characteristics",
+  FontSlant->"Italic"]
+}], "SubsubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.6931007434539843`*^9}}]
+}, Open  ]],
+
+Cell["Time complexity", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100701112606*^9}, {3.6931007649417553`*^9, 3.6931007649481983`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Time for compilation", "SubsubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100701112606*^9}, {3.6931007649417553`*^9, 3.693100774844969*^9}}],
+
+Cell[TextData[{
+ "Time depends on ",
+ StyleBox["instance characteristics",
+  FontSlant->"Italic"]
+}], "SubsubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100701112606*^9}, {3.6931007649417553`*^9, 3.693100797875922*^9}}]
+}, Open  ]],
+
+Cell[TextData[StyleBox["What is an instance characteristic? (the item to \
+measure the length of)",
+ FontSlant->"Italic"]], "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100701112606*^9}, {3.6931007649417553`*^9, 3.693100807657012*^9}, {
+  3.69310112310752*^9, 3.693101135275209*^9}, {3.693101229104661*^9, 
+  3.693101229114828*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Number of inputs", "SubsubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100701112606*^9}, {3.6931007649417553`*^9, 3.693100807657012*^9}, {
+  3.69310112310752*^9, 3.693101135275209*^9}, {3.693101229104661*^9, 
+  3.6931012325959187`*^9}, {3.693107344352496*^9, 3.693107351549662*^9}}],
+
+Cell["Number of outputs", "SubsubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100701112606*^9}, {3.6931007649417553`*^9, 3.693100807657012*^9}, {
+  3.69310112310752*^9, 3.693101135275209*^9}, {3.693101229104661*^9, 
+  3.6931012325959187`*^9}, {3.693107344352496*^9, 3.693107363286234*^9}}],
+
+Cell["the magnitudes of the inputs and outputs", "SubsubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379182453`*^9}, {3.6931006572795467`*^9, 
+  3.693100701112606*^9}, {3.6931007649417553`*^9, 3.693100807657012*^9}, {
+  3.69310112310752*^9, 3.693101135275209*^9}, {3.693101229104661*^9, 
+  3.6931012325959187`*^9}, {3.693107344352496*^9, 3.6931073747919073`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell["Program Step (the scale used) and instance characteristics", \
+"ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379124317`*^9}, {3.693100999897531*^9, 
+  3.6931010026481133`*^9}, {3.693101110397519*^9, 3.693101144901408*^9}, {
+  3.6931020589942093`*^9, 3.693102059000112*^9}, {3.6931069216080008`*^9, 
+  3.69310692161684*^9}}],
+
+Cell["\<\
+Not just the instance characteristics but nature of the actual input!\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+   3.693100199820627*^9, 3.6931003379124317`*^9}, {3.693100999897531*^9, 
+   3.6931010026481133`*^9}, {3.693101110397519*^9, 3.693101144901408*^9}, {
+   3.6931020589942093`*^9, 3.693102059000112*^9}, 3.6931069216080008`*^9, {
+   3.69310777934763*^9, 3.693107797630217*^9}, {3.6931079148660707`*^9, 
+   3.6931079210154333`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Best case", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+   3.693100199820627*^9, 3.6931003379124317`*^9}, {3.693100999897531*^9, 
+   3.6931010026481133`*^9}, {3.693101110397519*^9, 3.693101144901408*^9}, {
+   3.6931020589942093`*^9, 3.693102059000112*^9}, 3.6931069216080008`*^9, {
+   3.69310777934763*^9, 3.693107801005047*^9}}],
+
+Cell["Average case and ", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+   3.693100199820627*^9, 3.6931003379124317`*^9}, {3.693100999897531*^9, 
+   3.6931010026481133`*^9}, {3.693101110397519*^9, 3.693101144901408*^9}, {
+   3.6931020589942093`*^9, 3.693102059000112*^9}, 3.6931069216080008`*^9, {
+   3.69310777934763*^9, 3.693107805198915*^9}}],
+
+Cell["Worst case", "SubitemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+   3.693100199820627*^9, 3.6931003379124317`*^9}, {3.693100999897531*^9, 
+   3.6931010026481133`*^9}, {3.693101110397519*^9, 3.693101144901408*^9}, {
+   3.6931020589942093`*^9, 3.693102059000112*^9}, 3.6931069216080008`*^9, {
+   3.69310777934763*^9, 3.693107807099979*^9}}]
+}, Open  ]],
+
+Cell["Counting program steps", "ItemNumbered",
+ CellChangeTimes->{{3.693100008105673*^9, 3.693100025914153*^9}, {
+  3.693100199820627*^9, 3.6931003379124317`*^9}, {3.693100999897531*^9, 
+  3.6931010026481133`*^9}, {3.693101110397519*^9, 3.693101144901408*^9}, {
+  3.6931020589942093`*^9, 3.6931020634280043`*^9}, {3.693102567467958*^9, 
+  3.6931025713981123`*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"AddM", "[", 
+    RowBox[{"A_", ",", "B_", ",", "m_", ",", "n_"}], "]"}], ":=", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"count", "=", "0"}], ";", 
+     RowBox[{"Z", "=", "B"}], ";", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"count", "=", "0"}]}], "}"}], ",", 
+       RowBox[{"i", "\[LessEqual]", "m"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"i", "++"}], ";", 
+         RowBox[{"count", "=", 
+          RowBox[{"count", "+", "2"}]}]}], "}"}], ",", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"j", "=", "1"}], ",", 
+         RowBox[{"j", "\[LessEqual]", "n"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"j", "++"}], ",", 
+           RowBox[{"count", "=", 
+            RowBox[{"count", "+", "2"}]}]}], "}"}], ",", 
+         RowBox[{
+          RowBox[{"Z", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "j"}], "]"}], "]"}], "=", 
+          RowBox[{
+           RowBox[{"A", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "j"}], "]"}], "]"}], "+", 
+           RowBox[{"B", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "j"}], "]"}], "]"}]}]}]}], " ", "]"}]}], "]"}],
+      ";", 
+     RowBox[{"count", "++"}], ";", 
+     RowBox[{"{", 
+      RowBox[{"count", ",", "Z"}], "}"}]}], ")"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.693102572745421*^9, 3.693102661477387*^9}, {
+  3.693102702452182*^9, 3.6931029339858017`*^9}, {3.6931029783812*^9, 
+  3.6931029873127613`*^9}, {3.6931030365191107`*^9, 3.69310308173767*^9}, {
+  3.6931032788678207`*^9, 3.693103283473962*^9}, {3.693103316001285*^9, 
+  3.693103344576214*^9}, {3.69310344623079*^9, 3.693103447583764*^9}, {
+  3.693103772217286*^9, 3.693103818876655*^9}, {3.693103862873085*^9, 
+  3.6931038657556467`*^9}, {3.693103909398678*^9, 3.693103913549376*^9}, {
+  3.6931041545864773`*^9, 3.693104167250546*^9}, {3.693104287717188*^9, 
+  3.693104298533267*^9}, {3.693104538694726*^9, 3.693104558619356*^9}, {
+  3.6931046371751013`*^9, 3.693104729250184*^9}, {3.6931048938189917`*^9, 
+  3.693104894204664*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"(", GridBox[{
+      {"1", "2"},
+      {"2", "3"}
+     }], ")"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.69310335450392*^9, 3.6931033646585217`*^9}, {
+  3.693104948207224*^9, 3.6931049650986233`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"(", GridBox[{
+      {"1", "2"},
+      {"2", "3"}
+     }], ")"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6931033660397882`*^9, 3.693103375441791*^9}, {
+  3.6931049723277483`*^9, 3.693104989497673*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Z", "=", 
+  RowBox[{
+   RowBox[{"AddM", "[", 
+    RowBox[{"A", ",", "B", ",", "2", ",", "2"}], "]"}], " ", "//", 
+   "First"}]}]], "Input",
+ CellChangeTimes->{{3.693103429149405*^9, 3.6931034637922688`*^9}, {
+  3.693103500437847*^9, 3.693103500934116*^9}, {3.69310367710916*^9, 
+  3.6931036774168053`*^9}, {3.6931038382552547`*^9, 3.693103838430049*^9}, {
+  3.69310390492787*^9, 3.693103905331442*^9}, {3.69310457868885*^9, 
+  3.693104602541379*^9}, {3.693104910235804*^9, 3.69310492716119*^9}, {
+  3.693104996745234*^9, 3.693104998763173*^9}}],
+
+Cell[BoxData["13"], "Output",
+ CellChangeTimes->{
+  3.693103841135511*^9, 3.693103872025072*^9, 3.6931039191246433`*^9, 
+   3.693104305716714*^9, 3.693104376688348*^9, {3.693104580903534*^9, 
+   3.693104603079199*^9}, {3.693104643267664*^9, 3.693104733578397*^9}, {
+   3.6931049119922237`*^9, 3.693104933581814*^9}, 3.6931049997848473`*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 739},
+WindowMargins->{{-1, Automatic}, {18, -26}},
+FrontEndVersion->"10.3 for Linux ARM (32-bit) (January 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[582, 22, 103, 1, 94, "Title"],
+Cell[CellGroupData[{
+Cell[710, 27, 140, 1, 31, "ItemNumbered"],
+Cell[853, 30, 304, 7, 32, "ItemNumbered"],
+Cell[1160, 39, 307, 7, 32, "ItemNumbered"],
+Cell[1470, 48, 179, 2, 31, "ItemNumbered"],
+Cell[CellGroupData[{
+Cell[1674, 54, 182, 2, 26, "SubitemNumbered"],
+Cell[1859, 58, 239, 3, 26, "SubitemNumbered"]
+}, Open  ]],
+Cell[2113, 64, 261, 5, 31, "ItemNumbered"],
+Cell[CellGroupData[{
+Cell[2399, 73, 232, 3, 26, "SubitemNumbered"],
+Cell[2634, 78, 222, 3, 26, "SubitemNumbered"]
+}, Open  ]],
+Cell[2871, 84, 247, 3, 31, "ItemNumbered"],
+Cell[CellGroupData[{
+Cell[3143, 91, 213, 3, 26, "SubitemNumbered"],
+Cell[CellGroupData[{
+Cell[3381, 98, 235, 3, 25, "SubsubitemNumbered"],
+Cell[3619, 103, 294, 7, 26, "SubsubitemNumbered"]
+}, Open  ]],
+Cell[3928, 113, 260, 3, 26, "SubitemNumbered"],
+Cell[CellGroupData[{
+Cell[4213, 120, 266, 3, 25, "SubsubitemNumbered"],
+Cell[4482, 125, 339, 7, 26, "SubsubitemNumbered"]
+}, Open  ]],
+Cell[4836, 135, 455, 7, 26, "SubitemNumbered"],
+Cell[CellGroupData[{
+Cell[5316, 146, 407, 5, 25, "SubsubitemNumbered"],
+Cell[5726, 153, 408, 5, 25, "SubsubitemNumbered"],
+Cell[6137, 160, 433, 5, 25, "SubsubitemNumbered"]
+}, Open  ]]
+}, Open  ]],
+Cell[6597, 169, 399, 6, 31, "ItemNumbered"],
+Cell[6999, 177, 496, 8, 31, "ItemNumbered"],
+Cell[CellGroupData[{
+Cell[7520, 189, 377, 5, 26, "SubitemNumbered"],
+Cell[7900, 196, 385, 5, 26, "SubitemNumbered"],
+Cell[8288, 203, 378, 5, 26, "SubitemNumbered"]
+}, Open  ]],
+Cell[8681, 211, 364, 5, 31, "ItemNumbered"]
+}, Open  ]],
+Cell[9060, 219, 2214, 55, 127, "Input"],
+Cell[11277, 276, 258, 8, 42, "Input"],
+Cell[11538, 286, 259, 8, 42, "Input"],
+Cell[CellGroupData[{
+Cell[11822, 298, 568, 11, 30, "Input"],
+Cell[12393, 311, 340, 5, 30, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

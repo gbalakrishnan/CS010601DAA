@@ -1,0 +1,142 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframEngine 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       160,          7]
+NotebookDataLength[      4047,        133]
+NotebookOptionsPosition[      3074,         96]
+NotebookOutlinePosition[      3412,        111]
+CellTagsIndexPosition[      3369,        108]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["What is an algorithm?", "Title",
+ CellChangeTimes->{{3.691563721485735*^9, 3.6915637560359983`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "An ",
+ StyleBox["algorithm",
+  FontSlant->"Italic"],
+ " is a finite set of instructions that, if followed, accomplishes a \
+particular task."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.6930949389656763`*^9}}],
+
+Cell[TextData[{
+ "A ",
+ StyleBox["program",
+  FontSlant->"Italic"],
+ " is an expression of an algorithm in a programming language."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.693094959526452*^9}}],
+
+Cell["Distinct areas under the study of algorithms are:", "ItemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.693094981297203*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["How to device algorithms?", "SubitemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.69309499545821*^9}}],
+
+Cell["How to validate algorithms?", "SubitemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.6930950203047256`*^9}}],
+
+Cell["How to analyze algorithms (Performance analysis)?", "SubitemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.693095046165196*^9}}],
+
+Cell["How to test an algorithm?", "SubitemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.6930950582662897`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Debugging (\[OpenCurlyDoubleQuote]debugging can only point to the presence of \
+errors, but not to their absense\[CloseCurlyDoubleQuote])\
+\>", "SubsubitemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.6930951048374243`*^9}}],
+
+Cell["Profiling (Performance measurements)", "SubsubitemNumbered",
+ CellChangeTimes->{{3.6930949383271437`*^9, 3.693095068238495*^9}, {
+  3.69309511106749*^9, 3.693095116378742*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exercises", "Section",
+ CellChangeTimes->{{3.6930951375226793`*^9, 3.6930951443654947`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Write the algorithm for Selection Sort.", "ItemNumbered",
+ CellChangeTimes->{{3.693095165169471*^9, 3.6930951974211082`*^9}, {
+  3.693095874297999*^9, 3.6930958884776697`*^9}, {3.6930996664575377`*^9, 
+  3.6930996664681787`*^9}}],
+
+Cell["Verify the above algorithm for Selection Sort.", "ItemNumbered",
+ CellChangeTimes->{{3.693095165169471*^9, 3.6930951974211082`*^9}, {
+  3.693095874297999*^9, 3.6930958884776697`*^9}, {3.6930996664575377`*^9, 
+  3.693099667936727*^9}, {3.693099795892874*^9, 3.693099807401669*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{626, 542},
+WindowMargins->{{-3, Automatic}, {Automatic, -78}},
+FrontEndVersion->"10.3 for Linux ARM (32-bit) (January 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[582, 22, 106, 1, 94, "Title"],
+Cell[CellGroupData[{
+Cell[713, 27, 249, 7, 52, "ItemNumbered"],
+Cell[965, 36, 219, 6, 52, "ItemNumbered"],
+Cell[1187, 44, 141, 1, 31, "ItemNumbered"],
+Cell[CellGroupData[{
+Cell[1353, 49, 119, 1, 26, "SubitemNumbered"],
+Cell[1475, 52, 124, 1, 26, "SubitemNumbered"],
+Cell[1602, 55, 144, 1, 26, "SubitemNumbered"],
+Cell[1749, 58, 122, 1, 26, "SubitemNumbered"],
+Cell[CellGroupData[{
+Cell[1896, 63, 245, 4, 41, "SubsubitemNumbered"],
+Cell[2144, 69, 182, 2, 25, "SubsubitemNumbered"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2387, 78, 98, 1, 65, "Section"],
+Cell[CellGroupData[{
+Cell[2510, 83, 235, 3, 31, "ItemNumbered"],
+Cell[2748, 88, 286, 3, 31, "ItemNumbered"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

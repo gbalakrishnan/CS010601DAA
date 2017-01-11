@@ -1,0 +1,115 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='WolframEngine 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       160,          7]
+NotebookDataLength[      3051,        106]
+NotebookOptionsPosition[      2420,         80]
+NotebookOutlinePosition[      2759,         95]
+CellTagsIndexPosition[      2716,         92]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Properties of algorithms", "Title",
+ CellChangeTimes->{{3.693095417966261*^9, 3.693095423424806*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Input:",
+  FontWeight->"Bold"],
+ " Zero or more quantities are externally supplied"
+}], "ItemNumbered",
+ CellChangeTimes->{{3.693095439103178*^9, 3.69309545661369*^9}, {
+  3.693095590783222*^9, 3.693095606828227*^9}}],
+
+Cell[TextData[{
+ StyleBox["Output:",
+  FontWeight->"Bold"],
+ " At least one quantity is produced."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.693095439103178*^9, 3.693095468369267*^9}}],
+
+Cell[TextData[{
+ StyleBox["Definiteness:",
+  FontWeight->"Bold"],
+ " Each instruction is clear and unambiguous"
+}], "ItemNumbered",
+ CellChangeTimes->{{3.693095439103178*^9, 3.693095486607608*^9}}],
+
+Cell[TextData[{
+ StyleBox["Finiteness:",
+  FontWeight->"Bold"],
+ " If we trace out the instructions of an algorithm, then for all cases, the \
+algorithm terminates after a finite number of steps."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.693095439103178*^9, 3.693095516786846*^9}}],
+
+Cell[TextData[{
+ StyleBox["Effectiveness:",
+  FontWeight->"Bold"],
+ " Every instruction must be very basic so that it can be carried out, in \
+principle, by a person using only pencil and paper. It is not enough that \
+each operation be definite as in criteria 3; it is also must to be feasible."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.693095439103178*^9, 3.693095579272635*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exercises", "Section",
+ CellChangeTimes->{{3.693095804747799*^9, 3.693095813559162*^9}}],
+
+Cell["\<\
+Describe two applications for which it is highly undesirable that the \
+corresponding computer program terminates after a finite number of steps.\
+\>", "ItemNumbered",
+ CellChangeTimes->{{3.693095827837605*^9, 3.693095857000163*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 653},
+WindowMargins->{{234, Automatic}, {Automatic, -15}},
+FrontEndVersion->"10.3 for Linux ARM (32-bit) (January 18, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[582, 22, 107, 1, 94, "Title"],
+Cell[CellGroupData[{
+Cell[714, 27, 244, 6, 32, "ItemNumbered"],
+Cell[961, 35, 184, 5, 32, "ItemNumbered"],
+Cell[1148, 42, 197, 5, 32, "ItemNumbered"],
+Cell[1348, 49, 282, 6, 52, "ItemNumbered"],
+Cell[1633, 57, 382, 7, 72, "ItemNumbered"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2052, 69, 94, 1, 65, "Section"],
+Cell[2149, 72, 243, 4, 51, "ItemNumbered"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
